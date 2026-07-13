@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Redirigiendo...</title>
+<meta name="robots" content="noindex">
+<style>
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    background: #fafafa;
+    color: #222;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 24px;
+    text-align: center;
+  }
+  .card {
+    max-width: 420px;
+  }
+  h1 {
+    font-size: 20px;
+    margin-bottom: 12px;
+  }
+  p {
+    font-size: 15px;
+    color: #555;
+    line-height: 1.5;
+  }
+  a.btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 14px 28px;
+    background: #ff4747;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 15px;
+  }
+  .spinner {
+    width: 28px;
+    height: 28px;
+    border: 3px solid #ddd;
+    border-top-color: #ff4747;
+    border-radius: 50%;
+    margin: 0 auto 18px;
+    animation: spin 0.8s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="spinner"></div>
+    <h1>Casi listo...</h1>
+    <p>Te estamos llevando al producto. Si no ocurre nada en unos segundos, toca el boton.</p>
+    <a class="btn" id="go" href="#">Ver producto</a>
+  </div>
+
+<script>
+  (function () {
+    var params = new URLSearchParams(window.location.search);
+    var dest = params.get("u");
+
+    if (dest) {
+      try {
+        dest = decodeURIComponent(dest);
+      } catch (e) {}
+
+      var link = document.getElementById("go");
+      link.href = dest;
+
+      setTimeout(function () {
+        window.location.href = dest;
+      }, 900);
+    }
+  })();
+</script>
+</body>
+</html>
